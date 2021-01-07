@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-produto
+spec:
+  selector:
+    matchLabels:
+      name: lbl-api-produto
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        name: lbl-api-produto
+    spec:
+      containers:
+      - name: api-produto
+        image: wesleyhinsch/api-produto:v1.0.0
+        env:
+        - name: MYSQL_SERVICE
+          value: service-k8s-mysql
+        - name: MYSQL_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: mysql-pass
+              key: mysql-db-name
+        - name: MYSQL_USER
+          valueFrom:
+            secretKeyRef:
+              name: mysql-pass
+              key: mysql-username
+        - name: MYSQL_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: mysql-pass
+              key: mysql-password
+        imagePullPolicy: Always
+        ports:
+        - name: api-produto
+          containerPort: 8091
+          protocol: TCP
+      imagePullSecrets:
+        - name: api-produto
