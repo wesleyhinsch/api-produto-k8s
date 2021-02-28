@@ -13,4 +13,4 @@ spec:
       targetPort: 8091
       nodePort: 30091
   type: NodePort
-
+  #type: ClusterIP
