@@ -25,18 +25,14 @@ spec:
           httpGet:
             path: /actuator/health/liveness
             port: 8091
-          timeoutSeconds: 1
-          failureThreshold: 3
-          periodSeconds: 5
-          successThreshold: 1
+          initialDelaySeconds: 120
         readinessProbe:
           httpGet:
             path: /actuator/health/readiness
             port: 8091
-          initialDelaySeconds: 500  
-          timeoutSeconds: 1
-          failureThreshold: 3
-          periodSeconds: 5
+          initialDelaySeconds: 20
+          periodSeconds: 15
+          failureThreshold: 6
         image: wesleyhinsch/api-produto:v1.0.0
         env:
         - name: MYSQL_SERVICE
