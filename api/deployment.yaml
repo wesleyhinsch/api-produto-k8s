@@ -25,20 +25,20 @@ spec:
           httpGet:
             path: /actuator/health/liveness
             port: 8091
-          initialDelaySeconds: 25
-          periodSeconds: 2
-          timeoutSeconds: 2
+          #initialDelaySeconds: 25
+          #periodSeconds: 2
+          #timeoutSeconds: 2
           #Informa quantas vezes uma falha deve ocorrer para a verificação ser considerada com falha e o pod da aplicação sofrer um restart ou não receber tráfego.
-          failureThreshold: 1
-          successThreshold: 1
+          #failureThreshold: 1
+          #successThreshold: 1
         readinessProbe:
           httpGet:
             path: /actuator/health/readiness
             port: 8091
-          initialDelaySeconds: 25
-          timeoutSeconds: 2
-          periodSeconds: 3
-          failureThreshold: 1
+          #initialDelaySeconds: 25
+          #timeoutSeconds: 2
+          #periodSeconds: 3
+          #failureThreshold: 1
         image: wesleyhinsch/api-produto:v1.0.0
         env:
         - name: MYSQL_SERVICE
